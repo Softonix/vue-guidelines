@@ -1,6 +1,4 @@
-type TIndexedObject<T = any> = {
-  [key: string]: T
-}
+type TIndexedObject<T = any> = Record<string, T>
 
 type TCallbackFn<T extends unknown[] = [], R = void> = (...args: T) => R
 

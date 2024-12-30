@@ -17,13 +17,13 @@ async function init () {
   books.value = (await useApiClient.get('/api/v1/Books')).slice(0, 3)
 }
 
-async function createBook () {
-  await useApiClient.post('/api/v1/Books', { description: '' })
-}
+// async function createBook () {
+//   await useApiClient.post('/api/v1/Books', { description: '' })
+// }
 
-async function updateBook () {
-  await useApiClient.put('/api/v1/Books/{id}', { pageCount: 1, description: '123' }, { dynamicKeys: { id: 123 } })
-}
+// async function updateBook () {
+//   await useApiClient.put('/api/v1/Books/{id}', { pageCount: 1, description: '123' }, { dynamicKeys: { id: 123 } })
+// }
 
 onMounted(init)
 </script>
