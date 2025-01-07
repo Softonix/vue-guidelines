@@ -52,8 +52,10 @@ export default [
         ignorePattern: 'url\\('
       }],
       'no-undef': 'off',
+      'no-useless-escape': 'off',
       'no-prototype-builtins': 'off',
       'array-callback-return': 'off',
+      'no-empty': ['error', { allowEmptyCatch: true }],
 
       'vue/max-attributes-per-line': 'off',
       'vue/require-default-prop': 'off',
@@ -64,7 +66,7 @@ export default [
       'vue/script-setup-uses-vars': 'error',
       'vue/attribute-hyphenation': 'off',
       'vue/v-on-event-hyphenation': 'off',
-      'vue/custom-event-name-casing': 'off',
+      'vue/no-deprecated-slot-attribute': 'off',
       'vue/first-attribute-linebreak': ['error', {
         singleline: 'ignore',
         multiline: 'below'
@@ -77,8 +79,6 @@ export default [
 
       '@stylistic/array-bracket-newline': ['error', 'consistent'],
       '@stylistic/array-bracket-spacing': ['error', 'never'],
-      '@stylistic/array-element-newline': ['error', 'consistent'],
-      '@stylistic/block-spacing': ['error', 'always'],
       '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: true }],
       '@stylistic/comma-dangle': ['error', 'never'],
       '@stylistic/comma-spacing': ['error', { before: false, after: true }],
@@ -87,7 +87,6 @@ export default [
       '@stylistic/eol-last': ['error', 'always'],
       '@stylistic/func-call-spacing': ['error', 'never'],
       '@stylistic/function-call-argument-newline': ['error', 'consistent'],
-      '@stylistic/function-paren-newline': ['error', 'consistent'],
       '@stylistic/implicit-arrow-linebreak': ['error', 'beside'],
       '@stylistic/indent': ['error', 2, { SwitchCase: 1 }],
       '@stylistic/jsx-quotes': ['error', 'prefer-double'],
@@ -102,10 +101,9 @@ export default [
       '@stylistic/no-trailing-spaces': ['error'],
       '@stylistic/no-whitespace-before-property': ['error'],
       '@stylistic/nonblock-statement-body-position': ['error', 'beside'],
-      '@stylistic/object-curly-newline': ['error', { consistent: true }],
-      '@stylistic/object-curly-spacing': ['error', 'always'],
+      '@stylistic/object-curly-newline': ['error', { consistent: true, multiline: true }],
       '@stylistic/object-property-newline': ['error', { allowMultiplePropertiesPerLine: true }],
-      '@stylistic/operator-linebreak': ['error', 'before'],
+      '@stylistic/operator-linebreak': ['error', 'after', { overrides: { '?': 'before', ':': 'before' } }],
       '@stylistic/padded-blocks': ['error', { blocks: 'never' }],
       '@stylistic/quote-props': ['error', 'as-needed'],
       '@stylistic/quotes': ['error', 'single', { avoidEscape: true }],
@@ -121,7 +119,7 @@ export default [
       '@stylistic/arrow-spacing': ['error', { before: true, after: true }],
       '@stylistic/rest-spread-spacing': ['error'],
       '@stylistic/no-multi-spaces': ['error'],
-      '@stylistic/curly-newline': ['error', 'always'],
+      '@stylistic/curly-newline': ['error', { multiline: true, minElements: 3, consistent: true }],
       '@stylistic/type-annotation-spacing': ['error', {
         before: false,
         after: true,
@@ -142,6 +140,8 @@ export default [
       '@typescript-eslint/array-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/consistent-type-definitions': 'off',
+      '@typescript-eslint/consistent-indexed-object-style': 'off',
+      '@typescript-eslint/no-empty-function': ['error', { allow: ['functions', 'arrowFunctions', 'asyncFunctions'] }],
       '@typescript-eslint/no-unused-vars': ['error', { ignoreRestSiblings: true }],
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/naming-convention': [
