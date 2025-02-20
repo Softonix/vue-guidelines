@@ -1,5 +1,6 @@
 <template>
   <div class="p-5" :style="{background: colors.orange[400]}">
+    <el-button @click="openModal('TestModal')">Open Modal</el-button>
     {{ testVar }}
     {{ books }}
   </div>
@@ -10,6 +11,8 @@ import { colors } from '@colors'
 
 const generalStore = useGeneralStore()
 const { testVar } = storeToRefs(generalStore)
+
+const { openModal } = useModals()
 
 /* THIS IS FOR EXAMPLE PURPOSES. REMOVE ON REAL PROJECT */
 const books = ref<TBooks>([])
