@@ -217,6 +217,7 @@ declare global {
   const useMemoize: typeof import('@vueuse/core')['useMemoize']
   const useMemory: typeof import('@vueuse/core')['useMemory']
   const useMinLenRule: typeof import('../src/composables/form-config')['useMinLenRule']
+  const useModals: typeof import('../src/composables/useModals')['useModals']
   const useModel: typeof import('vue')['useModel']
   const useMounted: typeof import('@vueuse/core')['useMounted']
   const useMouse: typeof import('@vueuse/core')['useMouse']

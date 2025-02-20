@@ -324,6 +324,7 @@
     "whenever": true,
     "onElementRemoval": true,
     "usePreferredReducedTransparency": true,
-    "useSSRWidth": true
+    "useSSRWidth": true,
+    "useModals": true
   }
 }
