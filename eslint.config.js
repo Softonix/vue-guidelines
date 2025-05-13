@@ -57,6 +57,8 @@ export default [
       'array-callback-return': 'off',
       'no-empty': ['error', { allowEmptyCatch: true }],
 
+      'vue/block-lang': 'off',
+      'vue/object-curly-spacing': ['error', 'always', { objectsInObjects: true }],
       'vue/max-attributes-per-line': 'off',
       'vue/require-default-prop': 'off',
       'vue/singleline-html-element-content-newline': 'off',
@@ -137,12 +139,15 @@ export default [
           }
         }],
 
+      '@typescript-eslint/no-unsafe-function-type': 'off',
+      '@typescript-eslint/no-unnecessary-type-assertion': 'off',
+      '@typescript-eslint/no-redundant-type-constituents': 'off',
       '@typescript-eslint/array-type': 'off',
+      '@typescript-eslint/no-floating-promises': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/consistent-type-definitions': 'off',
       '@typescript-eslint/consistent-indexed-object-style': 'off',
       '@typescript-eslint/no-empty-function': ['error', { allow: ['functions', 'arrowFunctions', 'asyncFunctions'] }],
-      '@typescript-eslint/no-unused-vars': ['error', { ignoreRestSiblings: true }],
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/naming-convention': [
         'error',
