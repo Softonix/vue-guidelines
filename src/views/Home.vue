@@ -1,5 +1,5 @@
 <template>
-  <div class="p-5" :style="{background: colors.orange[400]}">
+  <div class="p-5" :style="{ background: colors.orange[400] }">
     <el-button @click="openModal('TestModal')">Open Modal</el-button>
     {{ testVar }}
     {{ books }}
