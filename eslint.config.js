@@ -3,7 +3,7 @@ import { createRequire } from 'module'
 import js from '@eslint/js'
 import ts from 'typescript-eslint'
 import pluginVue from 'eslint-plugin-vue'
-import vueTsEslintConfig from '@vue/eslint-config-typescript'
+import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
 import stylisticEslintPlugin from '@stylistic/eslint-plugin'
 
 const eslintAutoImport = createRequire(import.meta.url)('./.eslintrc-auto-import.json')
@@ -23,8 +23,11 @@ export default [
 
   js.configs.recommended,
   ...ts.configs.recommended,
-  ...pluginVue.configs['flat/recommended'],
-  ...vueTsEslintConfig({ extends: ['recommended', 'stylistic'] }),
+  ...defineConfigWithVueTs(
+    vueTsConfigs.recommended,
+    vueTsConfigs.stylistic,
+    pluginVue.configs['flat/recommended']
+  ),
 
   {
     name: 'app/files-to-lint',
