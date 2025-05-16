@@ -14,5 +14,5 @@
 
 <script lang="ts" setup>
 const { messages, locale } = useI18n()
-const {openModal} = useModals()
+const { openModal } = useModals()
 </script>
