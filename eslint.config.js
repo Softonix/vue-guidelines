@@ -107,6 +107,7 @@ export default [
       '@stylistic/no-whitespace-before-property': ['error'],
       '@stylistic/nonblock-statement-body-position': ['error', 'beside'],
       '@stylistic/object-curly-newline': ['error', { consistent: true, multiline: true }],
+      '@stylistic/object-curly-spacing': ['error', 'always', { objectsInObjects: true }],
       '@stylistic/object-property-newline': ['error', { allowMultiplePropertiesPerLine: true }],
       '@stylistic/operator-linebreak': ['error', 'after', { overrides: { '?': 'before', ':': 'before' } }],
       '@stylistic/padded-blocks': ['error', { blocks: 'never' }],
