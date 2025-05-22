@@ -50,6 +50,7 @@ export default [
         ignoreComments: true,
         ignoreTrailingComments: true,
         ignoreUrls: true,
+        ignoreTemplateLiterals: true,
         ignoreStrings: true,
         ignoreRegExpLiterals: true,
         ignorePattern: 'url\\('
