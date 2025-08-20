@@ -12,7 +12,7 @@ export const ComponentsBuilder = () => Components({
     ...buildViewsComponents()
   ],
   resolvers: [
-    ElementPlusResolver({ importStyle: false }),
+    ElementPlusResolver(),
     IconsResolverCustom()
   ]
 })

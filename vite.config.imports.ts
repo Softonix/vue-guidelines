@@ -4,6 +4,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 /* CONFIGURATION FOR SCRIPTS AUTO-IMPORT */
 export const ImportsBuilder = () => AutoImport({
   dts: './dts/auto-imports.d.ts',
+  viteOptimizeDeps: true,
 
   dirs: [
     './src/composables',
@@ -23,9 +24,8 @@ export const ImportsBuilder = () => AutoImport({
     'vue',
     'vue-router',
     '@vueuse/core',
-    '@vueuse/head',
     'pinia',
     'vue-i18n'
   ],
-  resolvers: [ElementPlusResolver()]
+  resolvers: [ElementPlusResolver({ importStyle: false })]
 })

@@ -1,33 +1,23 @@
-import { createRequire } from 'module'
-
-import js from '@eslint/js'
-import ts from 'typescript-eslint'
-import pluginVue from 'eslint-plugin-vue'
-import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
 import stylisticEslintPlugin from '@stylistic/eslint-plugin'
+import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
+import pluginVue from 'eslint-plugin-vue'
 
-const eslintAutoImport = createRequire(import.meta.url)('./.eslintrc-auto-import.json')
+import eslintAutoImport from './.eslintrc-auto-import.json'
 
-export default [
+export default defineConfigWithVueTs(
+  vueTsConfigs.recommended,
+  vueTsConfigs.stylistic,
+  pluginVue.configs['flat/recommended'],
   {
     name: 'app/files-to-ignore',
     ignores: [
       '**/dist/**',
       '**/dist-ssr/**',
-      '**/coverage/**',
       'dts/*.d.ts',
       'src/api/types/schema.d.ts',
       'src/api/types/axios.d.ts'
     ]
   },
-
-  js.configs.recommended,
-  ...ts.configs.recommended,
-  ...defineConfigWithVueTs(
-    vueTsConfigs.recommended,
-    vueTsConfigs.stylistic,
-    pluginVue.configs['flat/recommended']
-  ),
 
   {
     name: 'app/files-to-lint',
@@ -132,17 +122,16 @@ export default [
         after: true,
         overrides: { arrow: { before: true, after: true } }
       }],
-      '@stylistic/member-delimiter-style': ['error',
-        {
-          multiline: {
-            delimiter: 'none',
-            requireLast: false
-          },
-          singleline: {
-            delimiter: 'semi',
-            requireLast: false
-          }
-        }],
+      '@stylistic/member-delimiter-style': ['error', {
+        multiline: {
+          delimiter: 'none',
+          requireLast: false
+        },
+        singleline: {
+          delimiter: 'semi',
+          requireLast: false
+        }
+      }],
 
       '@typescript-eslint/no-unsafe-function-type': 'off',
       '@typescript-eslint/no-unnecessary-type-assertion': 'off',
@@ -175,4 +164,4 @@ export default [
       ]
     }
   }
-]
+)

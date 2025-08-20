@@ -1,0 +1,39 @@
+@import 'element-plus/theme-chalk/el-overlay.css';
+@import 'element-plus/theme-chalk/el-dialog.css';
+
+.el-overlay {
+  @apply backdrop-blur-xs bg-red-500/50;
+
+  .el-overlay-dialog {
+    @apply flex items-center justify-center p-4;
+    .el-dialog {
+      @apply m-0 p-0 w-full overflow-hidden flex flex-col max-h-full;
+  
+      .el-dialog__title {
+        @apply font-medium;
+      }
+  
+      .el-dialog__header {
+        @apply p-4 md:p-5 border-b border-(--el-border-color) relative shrink-0;
+      }
+    
+      .el-dialog__footer{
+        @apply p-4 md:p-5 border-t border-(--el-border-color) flex items-center gap-4 justify-end shrink-0 z-10;
+      }
+  
+      .el-dialog__body {
+        @apply grow overflow-hidden flex flex-col p-0 relative;
+    
+        >div {
+          @apply grow overflow-auto flex flex-col p-4 md:p-5;
+    
+          &.el-loading-parent--relative {
+            @apply overflow-hidden;
+            position: static !important;
+          }
+        }
+      }
+    }
+  }
+}
+

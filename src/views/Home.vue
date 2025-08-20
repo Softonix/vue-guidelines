@@ -1,14 +1,18 @@
 <template>
-  <div class="p-5" :style="{ background: colors.orange[400] }">
-    <el-button @click="openModal('TestModal')">Open Modal</el-button>
-    {{ testVar }}
-    {{ books }}
+  <div class="p-5">
+    <el-button @click="openModal('TestModal')">
+      Open Modal
+    </el-button>
+    <p class="text-primary">
+      {{ testVar }}
+    </p>
+    <p class="text-primary">
+      {{ books }}
+    </p>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { colors } from '@colors'
-
 const generalStore = useGeneralStore()
 const { testVar } = storeToRefs(generalStore)
 
