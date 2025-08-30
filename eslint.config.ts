@@ -1,23 +1,21 @@
 import stylisticEslintPlugin from '@stylistic/eslint-plugin'
+import { globalIgnores } from 'eslint/config'
 import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
 import pluginVue from 'eslint-plugin-vue'
 
 import eslintAutoImport from './.eslintrc-auto-import.json'
 
 export default defineConfigWithVueTs(
+  globalIgnores([
+    '**/dist/**',
+    '**/dist-ssr/**',
+    'dts/*.d.ts',
+    'src/api/types/schema.d.ts',
+    'src/api/types/axios.d.ts'
+  ]),
   vueTsConfigs.recommended,
   vueTsConfigs.stylistic,
   pluginVue.configs['flat/recommended'],
-  {
-    name: 'app/files-to-ignore',
-    ignores: [
-      '**/dist/**',
-      '**/dist-ssr/**',
-      'dts/*.d.ts',
-      'src/api/types/schema.d.ts',
-      'src/api/types/axios.d.ts'
-    ]
-  },
 
   {
     name: 'app/files-to-lint',
@@ -40,8 +38,8 @@ export default defineConfigWithVueTs(
         ignoreComments: true,
         ignoreTrailingComments: true,
         ignoreUrls: true,
-        ignoreTemplateLiterals: true,
         ignoreStrings: true,
+        ignoreTemplateLiterals: true,
         ignoreRegExpLiterals: true,
         ignorePattern: 'url\\('
       }],
@@ -59,7 +57,6 @@ export default defineConfigWithVueTs(
       'vue/no-v-html': 'off',
       'vue/multi-word-component-names': 'off',
       'vue/component-name-in-template-casing': ['error', 'PascalCase'],
-      'vue/script-setup-uses-vars': 'error',
       'vue/attribute-hyphenation': 'off',
       'vue/v-on-event-hyphenation': 'off',
       'vue/no-deprecated-slot-attribute': 'off',
@@ -81,7 +78,7 @@ export default defineConfigWithVueTs(
       '@stylistic/comma-style': ['error', 'last'],
       '@stylistic/computed-property-spacing': ['error', 'never'],
       '@stylistic/eol-last': ['error', 'always'],
-      '@stylistic/func-call-spacing': ['error', 'never'],
+      '@stylistic/function-call-spacing': ['error', 'never'],
       '@stylistic/function-call-argument-newline': ['error', 'consistent'],
       '@stylistic/implicit-arrow-linebreak': ['error', 'beside'],
       '@stylistic/indent': ['error', 2, { SwitchCase: 1 }],
@@ -97,9 +94,9 @@ export default defineConfigWithVueTs(
       '@stylistic/no-trailing-spaces': ['error'],
       '@stylistic/no-whitespace-before-property': ['error'],
       '@stylistic/nonblock-statement-body-position': ['error', 'beside'],
-      '@stylistic/object-curly-newline': ['error', { consistent: true, multiline: true }],
       '@stylistic/object-curly-spacing': ['error', 'always', { objectsInObjects: true }],
-      '@stylistic/object-property-newline': ['error', { allowMultiplePropertiesPerLine: true }],
+      '@stylistic/object-curly-newline': ['error', { consistent: true, multiline: true }],
+      '@stylistic/object-property-newline': ['error', { allowAllPropertiesOnSameLine: true }],
       '@stylistic/operator-linebreak': ['error', 'after', { overrides: { '?': 'before', ':': 'before' } }],
       '@stylistic/padded-blocks': ['error', { blocks: 'never' }],
       '@stylistic/quote-props': ['error', 'as-needed'],
@@ -134,14 +131,15 @@ export default defineConfigWithVueTs(
       }],
 
       '@typescript-eslint/no-unsafe-function-type': 'off',
+      '@typescript-eslint/no-unused-vars': ['error', { ignoreRestSiblings: true }],
       '@typescript-eslint/no-unnecessary-type-assertion': 'off',
       '@typescript-eslint/no-redundant-type-constituents': 'off',
       '@typescript-eslint/array-type': 'off',
-      '@typescript-eslint/no-unused-vars': ['error', { ignoreRestSiblings: true }],
       '@typescript-eslint/no-floating-promises': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/consistent-type-definitions': 'off',
       '@typescript-eslint/consistent-indexed-object-style': 'off',
+      '@typescript-eslint/no-duplicate-enum-values': 'off',
       '@typescript-eslint/no-empty-function': ['error', { allow: ['functions', 'arrowFunctions', 'asyncFunctions'] }],
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/naming-convention': [
