@@ -5,10 +5,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-
-import { IconsPluginCustom } from './vite.config.icons'
-import { ComponentsBuilder } from './vite.config.components'
-import { ImportsBuilder } from './vite.config.imports'
+import { SoftonixAutoImportsVue, Resolvers } from '@softonix/vite-plugin-auto-imports-vue'
 
 export default defineConfig({
   plugins: [
@@ -17,10 +14,25 @@ export default defineConfig({
     visualizer({
       open: true
     }),
-
-    IconsPluginCustom(),
-    ComponentsBuilder(),
-    ImportsBuilder()
+    SoftonixAutoImportsVue({
+      scripts: {
+        dirs: ['./src/api/*client.ts'],
+        imports: [
+          'vue-router',
+          '@vueuse/core',
+          'pinia',
+          'vue-i18n'
+        ],
+        resolvers: [
+          Resolvers.ElementPlusResolver({ importStyle: false })
+        ]
+      },
+      components: {
+        resolvers: [
+          Resolvers.ElementPlusResolver()
+        ]
+      }
+    })
   ],
 
   resolve: {

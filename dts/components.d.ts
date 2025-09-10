@@ -15,6 +15,7 @@ declare module 'vue' {
     Modals: typeof import('./../src/components/Modals.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    StxIconCar: typeof import('~icons/icon/car')['default']
     TestModal: typeof import('./../src/components/TestModal.vue')['default']
   }
 }

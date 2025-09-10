@@ -1,5 +1,6 @@
 <template>
   <div class="p-5">
+    <StxIconCar />
     <el-button @click="openModal('TestModal')">
       Open Modal
     </el-button>
