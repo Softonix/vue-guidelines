@@ -136,6 +136,7 @@
     "unref": true,
     "unrefElement": true,
     "until": true,
+    "useAbortController": true,
     "useActiveElement": true,
     "useAnimate": true,
     "useApiClient": true,
