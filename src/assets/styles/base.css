@@ -1,0 +1,30 @@
+/* UPDATE DEPENDING ON YOUR PROJECT NEEDS */
+@layer base {
+  * {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+  }
+
+  body {
+    @apply text-base;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  *::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  /* scrollbar itself */
+  *::-webkit-scrollbar-thumb {
+    background-color: #babac0;
+    border-radius: 16px;
+    border: 2px solid #fff;
+  }
+
+  /* set button(top and bottom of the scrollbar) */
+  *::-webkit-scrollbar-button {
+    display: none;
+  }
+
+}

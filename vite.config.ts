@@ -1,28 +1,27 @@
 import { fileURLToPath, URL } from 'node:url'
 
-import { visualizer } from 'rollup-plugin-visualizer'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import tailwindcss from '@tailwindcss/vite'
 
-import { IconsPluginCustom } from './vite.config.icons'
-import { ComponentsBuilder } from './vite.config.components'
-import { ImportsBuilder } from './vite.config.imports'
+import {
+  IconsAutoImport,
+  ComponentsAutoImport,
+  ScriptsAutoImport
+} from './.config/auto-imports/vite'
 
 export default defineConfig({
   plugins: [
     vue(),
-    visualizer({
-      open: true
-    }),
-    IconsPluginCustom(),
-    ComponentsBuilder(),
-    ImportsBuilder()
+    tailwindcss(),
+    ScriptsAutoImport(),
+    ComponentsAutoImport(),
+    IconsAutoImport()
   ],
 
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-      '@colors': fileURLToPath(new URL('./tailwind/tailwind.colors.ts', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   }
 })

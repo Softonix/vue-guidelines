@@ -1,0 +1,9 @@
+@import 'element-plus/theme-chalk/el-overlay.css';
+@import 'element-plus/theme-chalk/el-dialog.css';
+
+.el-overlay {
+  .el-overlay-dialog {
+    @apply flex items-center justify-center p-4;
+  }
+}
+

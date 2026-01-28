@@ -18,9 +18,6 @@ dist-ssr
 coverage
 *.local
 
-/tests/cypress/videos/
-/tests/cypress/screenshots/
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -30,8 +27,14 @@ coverage
 *.njsproj
 *.sln
 *.sw?
-/test-results/
-/playwright-report/
-/playwright/.cache/
 
-stats.html
+*.tsbuildinfo
+
+.eslintcache
+
+# Cypress
+/cypress/videos/
+/cypress/screenshots/
+
+# Vitest
+__screenshots__/

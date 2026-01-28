@@ -1,8 +1,0 @@
-#!/bin/sh
-
-echo "*****Running linter and type-check******"
-
-curl https://icanhazdadjoke.com/
-
-npm run lint
-npm run type-check

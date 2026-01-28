@@ -1,0 +1,15 @@
+@theme {
+  --color-primary: #ff4713;
+  --color-text-primary: #303133;
+  --color-text-regular: #606266;
+  --color-text-secondary: #909399;
+  --color-text-placeholder: #a8abb2;
+  --color-text-disabled: #c0c4cc;
+
+  --color-border: #dcdfe6;
+  --color-border-light: #e4e7ed;
+  --color-border-lighter: #ebeef5;
+  --color-border-extra-light: #f2f6fc;
+  --color-border-dark: #d4d7de;
+  --color-border-darker: #cdd0d6;
+}

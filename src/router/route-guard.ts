@@ -1,10 +1,9 @@
 import type { NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
 
-export const routeGuard = async (
+export const routeGuard = (
   to: RouteLocationNormalized,
   from: RouteLocationNormalized,
   next: NavigationGuardNext
 ) => {
-  // todo: please write your own route guard
   next()
 }

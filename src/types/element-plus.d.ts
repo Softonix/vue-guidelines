@@ -1,4 +1,5 @@
-type TElementPlus = {
+type TElementPlus = typeof import('element-plus')
+interface IElementPlus {
   UploadInstance: import('element-plus').UploadInstance
   UploadProps: import('element-plus').UploadProps
   UploadUserFile: import('element-plus').UploadUserFile

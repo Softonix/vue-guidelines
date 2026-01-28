@@ -1,0 +1,70 @@
+/* UPDATE DEPENDING ON YOUR PROJECT NEEDS */
+
+/*
+  You can check element plus root css variables here:
+  node_modules/element-plus/theme-chalk/el-var.css
+
+  Component based variables are defined in the respective components css files
+*/
+
+:root {
+  /* PRIMARY COLOR */
+  --el-color-primary: var(--color-primary);
+  /*
+    The following example of primary color is just an example.
+    It is dependant on your project ui kit and colors palette.
+    These variables must be defined for each accent colors like
+    primary/success/warning/danger/info to ensure proper element plus styling.
+  */
+  --el-color-primary-light-3: color-mix(in srgb, var(--el-color-primary) 70%, white);
+  --el-color-primary-light-5: color-mix(in srgb, var(--el-color-primary) 50%, white);
+  --el-color-primary-light-7: color-mix(in srgb, var(--el-color-primary) 30%, white);
+  --el-color-primary-light-8: color-mix(in srgb, var(--el-color-primary) 20%, white);
+  --el-color-primary-light-9: color-mix(in srgb, var(--el-color-primary) 10%, white);
+  --el-color-primary-dark-2: color-mix(in srgb, var(--el-color-primary) 80%, black);
+
+  /* SUCCESS COLOR */
+  /* ... */
+
+  /* WARNING COLOR */
+  /* ... */
+
+  /* DANGER COLOR */
+  /* ... */
+
+  /* INFO COLOR */
+  /* ... */
+
+  /* TEXT COLORS */
+  --el-text-color-primary: var(--color-text-primary);
+  --el-text-color-regular: var(--color-text-regular);
+  --el-text-color-secondary: var(--color-text-secondary);
+  --el-text-color-placeholder: var(--color-text-placeholder);
+  --el-text-color-disabled: var(--color-text-disabled);
+
+  /* BORDER COLORS */
+  --el-border-color: var(--color-border);
+  --el-border-color-light: var(--color-border-light);
+  --el-border-color-lighter: var(--color-border-lighter);
+  --el-border-color-extra-light: var(--color-border-extra-light);
+  --el-border-color-dark: var(--color-border-dark);
+  --el-border-color-darker: var(--color-border-darker);
+
+  /* FONT SIZE */
+  --el-font-size-extra-large: var(--text-xl);
+  --el-font-size-large: var(--text-lg);
+  --el-font-size-medium: var(--text-base);
+  --el-font-size-base: var(--text-sm);
+  --el-font-size-small: var(--text-sm);
+  --el-font-size-extra-small: var(--text-xs);
+
+  /* LINE HEIGHT */
+  --el-font-line-height-primary: var(--text-base--line-height);
+
+  /* BORDER RADIUS */
+  --el-border-radius-base: var(--radius-sm);
+  --el-border-radius-small: var(--radius-xs);
+  --el-border-radius-round: var(--radius-3xl);
+  --el-border-radius-circle: var(--radius-full);
+}
+
