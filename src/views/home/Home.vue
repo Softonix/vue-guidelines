@@ -4,15 +4,15 @@ function toggleIcon () {
   iconName.value = iconName.value === 'car' ? 'cart' : 'car'
 }
 
-const generalStore = useGeneralStore()
-const { testVar } = storeToRefs(generalStore)
+const homeStore = useHomeStore()
+const { testVar } = storeToRefs(homeStore)
 
 const { openModal } = useModals()
 
 /* THIS IS FOR EXAMPLE PURPOSES. REMOVE ON REAL PROJECT */
 const books = ref<TBooks>([])
 async function init () {
-  books.value = (await generalService.getBooks()).slice(0, 3)
+  books.value = (await homeService.getBooks()).slice(0, 3)
 }
 
 onMounted(init)
