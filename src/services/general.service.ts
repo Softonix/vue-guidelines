@@ -1,4 +1,4 @@
-class ExampleService {
+class GeneralService {
   getBooks () {
     return useApiClient.get('/api/v1/Books')
   }
@@ -16,4 +16,4 @@ class ExampleService {
   }
 }
 
-export const exampleService = new ExampleService()
+export const generalService = new GeneralService()

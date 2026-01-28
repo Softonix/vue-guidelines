@@ -1,9 +1,17 @@
+<script setup lang="ts">
+defineProps<{
+  title: string
+}>()
+
+const { isOpen, closeModal } = useModals()
+</script>
+
 <template>
   <el-dialog
     :model-value="isOpen.HomeModal"
     :before-close="() => closeModal('HomeModal')"
     destroy-on-close
-    class="no-header body-p-0 max-w-[700px]"
+    :title="title"
   >
     <div>Test Modal Content</div>
 
@@ -14,7 +22,3 @@
     </template>
   </el-dialog>
 </template>
-
-<script setup lang="ts">
-const { isOpen, closeModal } = useModals()
-</script>

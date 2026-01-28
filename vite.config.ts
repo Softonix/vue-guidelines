@@ -3,20 +3,19 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import tailwindcss from '@tailwindcss/vite'
+import svgLoader from 'vite-svg-loader'
 
-import {
-  IconsAutoImport,
-  ComponentsAutoImport,
-  ScriptsAutoImport
-} from './.config/auto-imports/vite'
+import { ComponentsAutoImport, ScriptsAutoImport } from './.config/auto-imports/vite'
+import { IconsNamesGenerator } from './.config/icons-names-generator'
 
 export default defineConfig({
   plugins: [
     vue(),
+    svgLoader(),
     tailwindcss(),
     ScriptsAutoImport(),
     ComponentsAutoImport(),
-    IconsAutoImport()
+    IconsNamesGenerator()
   ],
 
   resolve: {

@@ -36,13 +36,15 @@ declare global {
   const defineStore: typeof import('pinia').defineStore
   const eagerComputed: typeof import('@vueuse/core').eagerComputed
   const effectScope: typeof import('vue').effectScope
-  const exampleService: typeof import('../../src/services/example.service').exampleService
+  const exampleService: typeof import('../../src/services/general.service').exampleService
   const extendRef: typeof import('@vueuse/core').extendRef
+  const generalService: typeof import('../../src/services/general.service').generalService
   const getActivePinia: typeof import('pinia').getActivePinia
   const getCurrentInstance: typeof import('vue').getCurrentInstance
   const getCurrentScope: typeof import('vue').getCurrentScope
   const getCurrentWatcher: typeof import('vue').getCurrentWatcher
   const h: typeof import('vue').h
+  const homeService: typeof import('../../src/views/home/home.service').homeService
   const ignorableWatch: typeof import('@vueuse/core').ignorableWatch
   const inject: typeof import('vue').inject
   const injectLocal: typeof import('@vueuse/core').injectLocal
@@ -188,7 +190,7 @@ declare global {
   const useEventBus: typeof import('@vueuse/core').useEventBus
   const useEventListener: typeof import('@vueuse/core').useEventListener
   const useEventSource: typeof import('@vueuse/core').useEventSource
-  const useExampleStore: typeof import('../../src/store/modules/example.store').useExampleStore
+  const useExampleStore: typeof import('../../src/store/modules/general.store').useExampleStore
   const useEyeDropper: typeof import('@vueuse/core').useEyeDropper
   const useFavicon: typeof import('@vueuse/core').useFavicon
   const useFetch: typeof import('@vueuse/core').useFetch
@@ -199,9 +201,11 @@ declare global {
   const useFps: typeof import('@vueuse/core').useFps
   const useFullscreen: typeof import('@vueuse/core').useFullscreen
   const useGamepad: typeof import('@vueuse/core').useGamepad
+  const useGeneralStore: typeof import('../../src/store/modules/general.store').useGeneralStore
   const useGeolocation: typeof import('@vueuse/core').useGeolocation
   const useGlobalProperties: typeof import('../../src/composables/useGlobalProperties').useGlobalProperties
   const useHead: typeof import('@vueuse/head').useHead
+  const useHomeStore: typeof import('../../src/views/home/home.store').useHomeStore
   const useId: typeof import('vue').useId
   const useIdle: typeof import('@vueuse/core').useIdle
   const useImage: typeof import('@vueuse/core').useImage

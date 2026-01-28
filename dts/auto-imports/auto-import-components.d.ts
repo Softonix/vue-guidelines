@@ -17,6 +17,7 @@ declare module 'vue' {
     HomeComponent: typeof import('./../../src/views/home/components/HomeComponent.vue')['default']
     HomeModal: typeof import('./../../src/views/home/components/modals/HomeModal.vue')['default']
     HomeNestedComponent: typeof import('./../../src/views/home/components/nested/HomeNestedComponent.vue')['default']
+    Icon: typeof import('./../../src/components/Icon.vue')['default']
     IconCar: typeof import('~icons/icon/car')['default']
     IconCart: typeof import('~icons/icon/cart')['default']
     Modals: typeof import('./../../src/components/Modals.vue')['default']

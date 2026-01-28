@@ -1,6 +1,5 @@
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-import { IconsResolverCustom } from './icons'
 
 /* CONFIGURATION FOR COMPONENTS AUTO-IMPORT */
 export const ComponentsAutoImport = () => Components({
@@ -10,7 +9,6 @@ export const ComponentsAutoImport = () => Components({
     './src/views/**/components/**/*.vue'
   ],
   resolvers: [
-    ElementPlusResolver({ importStyle: false }),
-    IconsResolverCustom()
+    ElementPlusResolver({ importStyle: false })
   ]
 })

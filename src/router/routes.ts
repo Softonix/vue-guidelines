@@ -1,16 +1,13 @@
 import type { RouteRecordRaw } from 'vue-router'
-import { routeNames } from './route-names'
+import { homeRoutes } from '@/views/home/home.routes'
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/:pathMatch(.*)*',
     redirect: '/'
   },
-  {
-    path: '/',
-    name: routeNames.home,
-    component: () => import('@/views/home/Home.vue')
-  }
+
+  ...homeRoutes
 ]
 
 export {

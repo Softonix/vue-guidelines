@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const { modals } = useModals()
+</script>
+
 <template>
   <component
     v-bind="modal.props"
@@ -7,7 +11,3 @@
     append-to-body
   />
 </template>
-
-<script setup lang="ts">
-const { modals } = useModals()
-</script>
