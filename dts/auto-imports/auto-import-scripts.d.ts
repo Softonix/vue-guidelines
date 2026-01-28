@@ -36,7 +36,6 @@ declare global {
   const defineStore: typeof import('pinia').defineStore
   const eagerComputed: typeof import('@vueuse/core').eagerComputed
   const effectScope: typeof import('vue').effectScope
-  const exampleService: typeof import('../../src/services/general.service').exampleService
   const extendRef: typeof import('@vueuse/core').extendRef
   const generalService: typeof import('../../src/services/general.service').generalService
   const getActivePinia: typeof import('pinia').getActivePinia
@@ -190,7 +189,6 @@ declare global {
   const useEventBus: typeof import('@vueuse/core').useEventBus
   const useEventListener: typeof import('@vueuse/core').useEventListener
   const useEventSource: typeof import('@vueuse/core').useEventSource
-  const useExampleStore: typeof import('../../src/store/modules/general.store').useExampleStore
   const useEyeDropper: typeof import('@vueuse/core').useEyeDropper
   const useFavicon: typeof import('@vueuse/core').useFavicon
   const useFetch: typeof import('@vueuse/core').useFetch
@@ -225,7 +223,7 @@ declare global {
   const useMemoize: typeof import('@vueuse/core').useMemoize
   const useMemory: typeof import('@vueuse/core').useMemory
   const useMinLenRule: typeof import('../../src/composables/useFormConfig').useMinLenRule
-  const useModals: typeof import('../../src/composables/useModals').useModals
+  const useModals: typeof import('../../src/features/modals/composables/useModals').useModals
   const useModel: typeof import('vue').useModel
   const useMounted: typeof import('@vueuse/core').useMounted
   const useMouse: typeof import('@vueuse/core').useMouse

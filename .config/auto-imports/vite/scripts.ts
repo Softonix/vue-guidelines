@@ -6,13 +6,19 @@ export const ScriptsAutoImport = () => AutoImport({
   dts: './dts/auto-imports/auto-import-scripts.d.ts',
 
   dirs: [
-    './src/composables',
-    './src/composables/**/index.ts',
     './src/api/client.ts',
-    './src/store/modules',
+
+    './src/composables',
+    './src/views/**/composables',
+    './src/features/**/composables',
+
     './src/services',
+    './src/views/**/*.service.ts',
+    './src/features/**/*.service.ts',
+
+    './src/store/modules',
     './src/views/**/*.store.ts',
-    './src/views/**/*.service.ts'
+    './src/features/**/*.store.ts'
   ],
 
   eslintrc: {

@@ -6,7 +6,8 @@ export const ComponentsAutoImport = () => Components({
   dts: './dts/auto-imports/auto-import-components.d.ts',
   globs: [
     './src/components/**/*.vue',
-    './src/views/**/components/**/*.vue'
+    './src/views/**/components/**/*.vue',
+    './src/features/**/components/**/*.vue'
   ],
   resolvers: [
     ElementPlusResolver({ importStyle: false })
