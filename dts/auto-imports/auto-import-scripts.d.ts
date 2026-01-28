@@ -175,11 +175,15 @@ declare global {
   const useDocumentVisibility: typeof import('@vueuse/core').useDocumentVisibility
   const useDraggable: typeof import('@vueuse/core').useDraggable
   const useDropZone: typeof import('@vueuse/core').useDropZone
+  const useElFormModel: typeof import('../../src/composables/useFormConfig').useElFormModel
+  const useElFormRef: typeof import('../../src/composables/useFormConfig').useElFormRef
+  const useElFormRules: typeof import('../../src/composables/useFormConfig').useElFormRules
   const useElementBounding: typeof import('@vueuse/core').useElementBounding
   const useElementByPoint: typeof import('@vueuse/core').useElementByPoint
   const useElementHover: typeof import('@vueuse/core').useElementHover
   const useElementSize: typeof import('@vueuse/core').useElementSize
   const useElementVisibility: typeof import('@vueuse/core').useElementVisibility
+  const useEmailRule: typeof import('../../src/composables/useFormConfig').useEmailRule
   const useEventBus: typeof import('@vueuse/core').useEventBus
   const useEventListener: typeof import('@vueuse/core').useEventListener
   const useEventSource: typeof import('@vueuse/core').useEventSource
@@ -210,10 +214,12 @@ declare global {
   const useLocalStorage: typeof import('@vueuse/core').useLocalStorage
   const useMagicKeys: typeof import('@vueuse/core').useMagicKeys
   const useManualRefHistory: typeof import('@vueuse/core').useManualRefHistory
+  const useMaxLenRule: typeof import('../../src/composables/useFormConfig').useMaxLenRule
   const useMediaControls: typeof import('@vueuse/core').useMediaControls
   const useMediaQuery: typeof import('@vueuse/core').useMediaQuery
   const useMemoize: typeof import('@vueuse/core').useMemoize
   const useMemory: typeof import('@vueuse/core').useMemory
+  const useMinLenRule: typeof import('../../src/composables/useFormConfig').useMinLenRule
   const useModals: typeof import('../../src/composables/useModals').useModals
   const useModel: typeof import('vue').useModel
   const useMounted: typeof import('@vueuse/core').useMounted
@@ -244,6 +250,7 @@ declare global {
   const usePrevious: typeof import('@vueuse/core').usePrevious
   const useRafFn: typeof import('@vueuse/core').useRafFn
   const useRefHistory: typeof import('@vueuse/core').useRefHistory
+  const useRequiredRule: typeof import('../../src/composables/useFormConfig').useRequiredRule
   const useResizeObserver: typeof import('@vueuse/core').useResizeObserver
   const useRoute: typeof import('vue-router').useRoute
   const useRouter: typeof import('vue-router').useRouter
