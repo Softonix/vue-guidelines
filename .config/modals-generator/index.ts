@@ -3,7 +3,7 @@ import path from 'node:path'
 import type { Plugin } from 'vite'
 
 const SCAN_DIRS = ['src/views', 'src/features', 'src/components']
-const OUTPUT = 'src/features/modals/modals.ts'
+const OUTPUT = 'src/features/modals/modals-registry.ts'
 
 const findModalsRecursively = (dir: string, pattern: RegExp): string[] => {
   const results: string[] = []

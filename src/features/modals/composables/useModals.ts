@@ -1,4 +1,4 @@
-import { Modals } from '../modals'
+import { Modals } from '../modals-registry'
 
 type TModalsType = typeof Modals
 
