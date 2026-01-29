@@ -14,6 +14,10 @@ export default defineConfigWithVueTs(
     '**/coverage/**'
   ]),
 
+  ...pluginVue.configs['flat/strongly-recommended'],
+  vueTsConfigs.recommendedTypeChecked,
+  vueTsConfigs.stylisticTypeChecked,
+
   {
     name: 'app/files-to-lint',
     files: ['**/*.{vue,ts,mts,tsx}'],
@@ -22,15 +26,7 @@ export default defineConfigWithVueTs(
     },
     languageOptions: {
       globals: autoImport.globals
-    }
-  },
-
-  ...pluginVue.configs['flat/strongly-recommended'],
-  vueTsConfigs.recommendedTypeChecked,
-  vueTsConfigs.stylisticTypeChecked,
-
-  {
-    name: 'app/rules-overrides',
+    },
     rules: eslintRules
   }
 )
