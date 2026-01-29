@@ -105,6 +105,6 @@ Everything in these paths is auto-imported (no manual imports needed):
 - NEVER let features depend on each other directly
 - Root page components must match route name: `Login.vue` → `/auth/login`
 - ALWAYS use named navigation with `routeNames` (auto-imported), NEVER path strings
-- Routes MUST have `name: routeNames.xxx` (camelCase), NEVER static strings like `name: 'my-route'`
+- Routes MUST have `name: routeNames.xxx` (camelCase), NEVER static strings like `name: 'my-route', it will be automatically generated inside routeNames`
 - Page/component CSS goes in `.vue` files, global styles in `/assets/styles/`
 
