@@ -7,11 +7,11 @@ import svgLoader from 'vite-svg-loader'
 
 import {
   ComponentsAutoImport,
-   ScriptsAutoImport,
-   IconNamesGenerator,
-   ModalsGenerator,
-   RouteNamesGenerator
-   } from './.config'
+  ScriptsAutoImport,
+  IconNamesGenerator,
+  ModalsGenerator,
+  RouteNamesGenerator
+} from './.config'
 
 export default defineConfig({
   plugins: [
