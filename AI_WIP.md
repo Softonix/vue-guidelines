@@ -8,7 +8,7 @@
 composable → store → service
 ```
 
-- **Service** → knows nothing about store or composable (pure API/data logic)
+- **Service** → knows nothing about store or composable (pure API/domain/data-managing logic)
 - **Store** → can use services and utility composables (e.g., VueUse), but should NOT use project orchestrating composables
 - **Composable** → can use stores and services (the orchestrator for business logic)
 
