@@ -7,6 +7,7 @@ export const ScriptsAutoImport = () => AutoImport({
 
   dirs: [
     './src/api/client.ts',
+    './src/router/route-names-registry.ts',
 
     './src/composables',
     './src/views/**/composables',
@@ -31,10 +32,15 @@ export const ScriptsAutoImport = () => AutoImport({
 
   imports: [
     'vue',
-    'vue-router',
     '@vueuse/core',
     '@vueuse/head',
-    'pinia'
+    'pinia',
+    'vue-router',
+    {
+      from: 'vue-router',
+      imports: ['RouteLocationRaw', 'RouteRecordRaw'],
+      type: true
+    }
   ],
 
   resolvers: [ElementPlusResolver()]

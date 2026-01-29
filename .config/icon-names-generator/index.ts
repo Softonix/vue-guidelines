@@ -7,7 +7,7 @@ interface IOptions {
   output?: string
 }
 
-export const IconsNamesGenerator = (options: IOptions = {}): Plugin => {
+export const IconNamesGenerator = (options: IOptions = {}): Plugin => {
   const {
     input = 'src/assets/icons',
     output = 'dts/icons.d.ts'
@@ -18,7 +18,7 @@ export const IconsNamesGenerator = (options: IOptions = {}): Plugin => {
     const outputPath = path.resolve(process.cwd(), output)
 
     if (!fs.existsSync(iconsDir)) {
-      console.warn(`[IconsNamesGenerator] Icons directory not found: ${iconsDir}`)
+      console.warn(`[IconNamesGenerator] Icons directory not found: ${iconsDir}`)
       return
     }
 
@@ -37,7 +37,6 @@ type TIcons = ${iconNames.length ? iconNames.map(name => `'${name}'`).join(' | '
     }
 
     fs.writeFileSync(outputPath, content, 'utf-8')
-    console.log(`[IconsNamesGenerator] Generated ${outputPath} with ${iconNames.length} icons`)
   }
 
   return {

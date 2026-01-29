@@ -61,7 +61,6 @@ ${allModals.map(m => `  ${m.name}: () => defineAsyncComponent(() => import('${m.
     }
 
     fs.writeFileSync(outputPath, content, 'utf-8')
-    console.log(`[ModalsGenerator] Generated ${outputPath} with ${allModals.length} modals`)
   }
 
   return {

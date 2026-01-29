@@ -30,9 +30,11 @@ composable → store → service
 ```
 .config/
 ├── auto-imports/          # unplugin-auto-import & unplugin-vue-components config
-├── eslint/rules/          # ESLint rules (base, stylistic, typescript, vue)
-├── icons-names-generator/ # Vite plugin generating TIcons type from SVG files
-└── modals-generator/      # Vite plugin auto-registering *Modal.vue files
+├── eslint-rules/          # ESLint rules (base, stylistic, typescript, vue)
+├── icon-names-generator/  # Vite plugin generating TIcons type from SVG files
+├── modals-generator/      # Vite plugin auto-registering *Modal.vue files
+├── route-names-generator/ # Vite plugin generating routeNames from routeNames.xxx usage
+└── index.ts               # Exports all config plugins
 
 dts/                       # TypeScript declarations (auto-generated + manual)
 
@@ -102,6 +104,7 @@ Everything in these paths is auto-imported (no manual imports needed):
 - NEVER let stores use project orchestrating composables (utility composables like VueUse are OK)
 - NEVER let features depend on each other directly
 - Root page components must match route name: `Login.vue` → `/auth/login`
-- Use `routeNames` object for route navigation (IDE assistance)
+- ALWAYS use named navigation with `routeNames` (auto-imported), NEVER path strings
+- Routes MUST have `name: routeNames.xxx` (camelCase), NEVER static strings like `name: 'my-route'`
 - Page/component CSS goes in `.vue` files, global styles in `/assets/styles/`
 

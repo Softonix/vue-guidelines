@@ -4,7 +4,7 @@ import stylisticPlugin from '@stylistic/eslint-plugin'
 import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
 import pluginVue from 'eslint-plugin-vue'
 
-import { eslintRules } from './.config/eslint/rules'
+import { eslintRules } from './.config'
 import autoImport from './.config/auto-imports/auto-import.json'
 
 export default defineConfigWithVueTs(

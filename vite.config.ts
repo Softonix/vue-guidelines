@@ -5,9 +5,13 @@ import vue from '@vitejs/plugin-vue'
 import tailwindcss from '@tailwindcss/vite'
 import svgLoader from 'vite-svg-loader'
 
-import { ComponentsAutoImport, ScriptsAutoImport } from './.config/auto-imports/vite'
-import { IconsNamesGenerator } from './.config/icons-names-generator'
-import { ModalsGenerator } from './.config/modals-generator'
+import {
+  ComponentsAutoImport,
+   ScriptsAutoImport,
+   IconNamesGenerator,
+   ModalsGenerator,
+   RouteNamesGenerator
+   } from './.config'
 
 export default defineConfig({
   plugins: [
@@ -16,8 +20,9 @@ export default defineConfig({
     tailwindcss(),
     ScriptsAutoImport(),
     ComponentsAutoImport(),
-    IconsNamesGenerator(),
-    ModalsGenerator()
+    IconNamesGenerator(),
+    ModalsGenerator(),
+    RouteNamesGenerator()
   ],
 
   resolve: {
