@@ -27,6 +27,8 @@ onMounted(init)
     <HomeComponent />
     <HomeNestedComponent />
 
+    <p>{{ filters.formatCurrency(1000) }}</p>
+
     <el-button @click="openModal('HomeModal', { title: 'Home Modal' })">Open Modal</el-button>
 
     <p class="text-primary">{{ testVar }}</p>

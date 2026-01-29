@@ -12,6 +12,8 @@ export const ScriptsAutoImport = () => AutoImport({
     './src/views/**/composables',
     './src/features/**/composables',
 
+    './src/utils',
+
     './src/services',
     './src/views/**/*.service.ts',
     './src/features/**/*.service.ts',
@@ -21,6 +23,7 @@ export const ScriptsAutoImport = () => AutoImport({
     './src/features/**/*.store.ts'
   ],
 
+  vueTemplate: true,
   eslintrc: {
     enabled: true,
     filepath: './.config/auto-imports/auto-import.json'
@@ -33,5 +36,6 @@ export const ScriptsAutoImport = () => AutoImport({
     '@vueuse/head',
     'pinia'
   ],
+
   resolvers: [ElementPlusResolver()]
 })

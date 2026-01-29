@@ -43,6 +43,7 @@ src/
 │   └── styles/            # CSS (main.css, theme.css, element-reset/)
 ├── components/            # Global components (auto-imported)
 ├── composables/           # Global composables (auto-imported)
+├── utils/                 # Global utility functions (auto-imported)
 ├── layouts/               # Layout components
 ├── plugins/               # Vue plugins
 ├── router/                # Routes, guards, route-names
@@ -55,6 +56,7 @@ src/
 │       ├── view.routes.ts
 │       ├── view.service.ts   # (auto-imported)
 │       ├── view.store.ts     # (auto-imported)
+│       ├── composables/      # (auto-imported)
 │       └── components/       # (auto-imported)
 └── features/              # Reusable isolated features
     └── [feature]/
@@ -75,6 +77,7 @@ Before creating from scratch, ALWAYS check existing libraries:
 
 Everything in these paths is auto-imported (no manual imports needed):
 - `src/composables/`, `src/views/**/composables/`, `src/features/**/composables/`
+- `src/utils/` (filters.ts, helpers.ts)
 - `src/services/`, `src/views/**/*.service.ts`, `src/features/**/*.service.ts`
 - `src/store/modules/`, `src/views/**/*.store.ts`, `src/features/**/*.store.ts`
 - `src/components/**/*.vue`, `src/views/**/components/**/*.vue`, `src/features/**/components/**/*.vue`
