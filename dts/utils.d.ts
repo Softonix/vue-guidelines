@@ -1,3 +1,9 @@
+type TPrettify<T> = {
+  [K in keyof T]: T[K] extends object
+    ? TPrettify<T[K]>
+    : T[K];
+} & {}
+
 type TIndexedObject<T = any> = Record<string, T>
 
 type TCallbackFn<T extends unknown[] = [], R = void> = (...args: T) => R
@@ -15,3 +21,4 @@ type TTableHeadings<T = Record<string, any>> = {
   sortMethod?: (a: number, b: number) => number
   formatter?: (row: T) => (number | string)
 }[]
+

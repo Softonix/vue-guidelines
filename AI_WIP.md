@@ -36,7 +36,7 @@ composable → store → service
 ├── route-names-generator/ # Vite plugin generating routeNames from routeNames.xxx usage
 └── index.ts               # Exports all config plugins
 
-dts/                       # TypeScript declarations (auto-generated + manual)
+dts/                       # TypeScript global declarations (auto-generated + manual)
 
 src/
 ├── api/                   # Axios client, interceptors, API types
@@ -51,7 +51,6 @@ src/
 ├── router/                # Routes, guards, route-names
 ├── services/              # Global services (auto-imported)
 ├── store/modules/         # Global Pinia stores (auto-imported)
-├── types/                 # Global TypeScript types
 ├── views/                 # Route-bound pages (strict structure)
 │   └── [view]/
 │       ├── View.vue

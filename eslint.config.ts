@@ -11,10 +11,7 @@ export default defineConfigWithVueTs(
   globalIgnores([
     '**/dist/**',
     '**/dist-ssr/**',
-    '**/coverage/**',
-    'dts/*.d.ts',
-    'src/api/types/schema.d.ts',
-    'src/api/types/axios.d.ts'
+    '**/coverage/**'
   ]),
 
   {
