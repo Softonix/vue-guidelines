@@ -10,7 +10,9 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix --cache",
-    "prepare": "husky"
+    "prepare": "husky",
+    "openapi-generate": "npx openapi-typescript https://fakerestapi.azurewebsites.net/swagger/v1/swagger.json -o ./src/features/platform/api/schema.ts",
+    "postinstall": "run-p openapi-generate"
   },
   "lint-staged": {
     "src/**/*.{js,ts,mts,tsx,vue}": [
