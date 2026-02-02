@@ -17,7 +17,7 @@ export default defineConfigWithVueTs(
   ]),
 
   pluginStylistic.configs.recommended,
-  pluginVue.configs['flat/strongly-recommended'],
+  pluginVue.configs['flat/recommended'],
   vueTsConfigs.recommendedTypeChecked,
   vueTsConfigs.stylisticTypeChecked,
 
@@ -30,4 +30,3 @@ export default defineConfigWithVueTs(
     }
   }
 )
-

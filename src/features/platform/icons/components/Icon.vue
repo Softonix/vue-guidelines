@@ -22,9 +22,9 @@ watch(() => props.name, async (name) => {
 
 <template>
   <component
-    v-if="icon"
-    :is="icon"
     v-bind="$attrs"
+    :is="icon"
+    v-if="icon"
     height="1.25em"
     width="1.25em"
   />
