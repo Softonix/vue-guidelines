@@ -1,7 +1,7 @@
 
 // --------------------------------------------- F O R M  R E F --------------------------------------------------------
-export function useElFormRef (initialValue: any = null) {
-  return ref<IElementPlus['FormInstance']>(initialValue)
+export function useElFormRef<T extends IElementPlus['FormInstance']> (initialValue: T | null) {
+  return ref(initialValue)
 }
 
 // --------------------------------------------- F O R M  M O D E L ----------------------------------------------------
