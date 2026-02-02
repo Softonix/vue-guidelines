@@ -6,8 +6,8 @@ import tailwindcss from '@tailwindcss/vite'
 import svgLoader from 'vite-svg-loader'
 
 import {
-  ComponentsAutoImport,
-  ScriptsAutoImport,
+  AutoImportComponents,
+  AutoImportScripts,
   IconNamesGenerator,
   ModalsGenerator,
   RouteNamesGenerator
@@ -18,8 +18,8 @@ export default defineConfig({
     vue(),
     svgLoader(),
     tailwindcss(),
-    ScriptsAutoImport(),
-    ComponentsAutoImport(),
+    AutoImportComponents(),
+    AutoImportScripts(),
     IconNamesGenerator(),
     ModalsGenerator(),
     RouteNamesGenerator()

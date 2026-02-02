@@ -202,7 +202,7 @@ declare global {
   const useFps: typeof import('@vueuse/core').useFps
   const useFullscreen: typeof import('@vueuse/core').useFullscreen
   const useGamepad: typeof import('@vueuse/core').useGamepad
-  const useGeneralStore: typeof import('../../src/store/modules/general.store').useGeneralStore
+  const useGeneralStore: typeof import('../../src/store/general.store').useGeneralStore
   const useGeolocation: typeof import('@vueuse/core').useGeolocation
   const useGlobalProperties: typeof import('../../src/composables/useGlobalProperties').useGlobalProperties
   const useHead: typeof import('@vueuse/head').useHead
@@ -539,7 +539,7 @@ declare module 'vue' {
     readonly useFps: UnwrapRef<typeof import('@vueuse/core')['useFps']>
     readonly useFullscreen: UnwrapRef<typeof import('@vueuse/core')['useFullscreen']>
     readonly useGamepad: UnwrapRef<typeof import('@vueuse/core')['useGamepad']>
-    readonly useGeneralStore: UnwrapRef<typeof import('../../src/store/modules/general.store')['useGeneralStore']>
+    readonly useGeneralStore: UnwrapRef<typeof import('../../src/store/general.store')['useGeneralStore']>
     readonly useGeolocation: UnwrapRef<typeof import('@vueuse/core')['useGeolocation']>
     readonly useGlobalProperties: UnwrapRef<typeof import('../../src/composables/useGlobalProperties')['useGlobalProperties']>
     readonly useHead: UnwrapRef<typeof import('@vueuse/head')['useHead']>

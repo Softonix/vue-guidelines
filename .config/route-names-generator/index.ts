@@ -2,6 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import type { Plugin } from 'vite'
+import { traverseDirs } from '../utils'
 
 const SCAN_DIRS = ['src/views', 'src/router']
 const OUTPUT = 'src/router/route-names-registry.ts'
@@ -14,19 +15,9 @@ const PROJECT_ROOT = path.resolve(__dirname, '../..')
 function findRouteFiles (dir: string): string[] {
   if (!fs.existsSync(dir)) return []
 
-  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
-    const fullPath = path.join(dir, entry.name)
-
-    if (entry.isDirectory()) {
-      return findRouteFiles(fullPath)
-    }
-
-    if (entry.isFile() && entry.name.endsWith('.routes.ts')) {
-      return [fullPath]
-    }
-
-    return []
-  })
+  return traverseDirs(dir, { withFiles: true })
+    .filter(({ entry }) => entry.isFile() && entry.name.endsWith('.routes.ts'))
+    .map(({ fullPath }) => fullPath)
 }
 
 function collectRouteFiles (): string[] {

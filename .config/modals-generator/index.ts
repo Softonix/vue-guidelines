@@ -2,6 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import type { Plugin } from 'vite'
+import { traverseDirs } from '../utils'
 
 interface IModalEntry {
   name: string
@@ -18,19 +19,9 @@ const PROJECT_ROOT = path.resolve(__dirname, '../..')
 function findModalFiles (dir: string): string[] {
   if (!fs.existsSync(dir)) return []
 
-  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
-    const fullPath = path.join(dir, entry.name)
-
-    if (entry.isDirectory()) {
-      return findModalFiles(fullPath)
-    }
-
-    if (entry.isFile() && entry.name.endsWith('Modal.vue')) {
-      return [fullPath]
-    }
-
-    return []
-  })
+  return traverseDirs(dir, { withFiles: true })
+    .filter(({ entry }) => entry.isFile() && entry.name.endsWith('Modal.vue'))
+    .map(({ fullPath }) => fullPath)
 }
 
 function collectModals () {
