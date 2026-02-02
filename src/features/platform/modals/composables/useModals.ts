@@ -14,7 +14,7 @@ const modals = ref(new Map<TModalsKeys, { component: any; props?: any; isOpen: b
 
 export function useModals () {
   const openModal = <K extends TModalsKeys>(name: K, props?: TComponentProps[K]) => {
-    modals.value.set(name, { component: markRaw(Modals[name]()), props, isOpen: true })
+    modals.value.set(name, { component: markRaw(Modals[name]() as Component), props, isOpen: true })
   }
 
   const closeModal = (name: TModalsKeys) => {

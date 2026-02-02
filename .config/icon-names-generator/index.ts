@@ -1,59 +1,72 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import type { Plugin } from 'vite'
 
-interface IOptions {
-  input?: string
-  output?: string
+const INPUT = 'src/features/platform/icons/assets'
+const OUTPUT = 'src/features/platform/icons/icons.d.ts'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const PROJECT_ROOT = path.resolve(__dirname, '../..')
+
+function readIconFiles (dir: string): string[] {
+  if (!fs.existsSync(dir)) return []
+
+  return fs
+    .readdirSync(dir, { withFileTypes: true })
+    .filter(entry => entry.isFile() && entry.name.endsWith('.svg'))
+    .map(entry => entry.name)
 }
 
-export const IconNamesGenerator = (options: IOptions = {}): Plugin => {
-  const {
-    input = 'src/assets/icons',
-    output = 'dts/icons.d.ts'
-  } = options
+function collectIconNames (): string[] {
+  const iconsDir = path.resolve(PROJECT_ROOT, INPUT)
 
-  const generateIconsNames = () => {
-    const iconsDir = path.resolve(process.cwd(), input)
-    const outputPath = path.resolve(process.cwd(), output)
+  if (!fs.existsSync(iconsDir)) {
+    console.warn(`[IconNamesGenerator] Icons directory not found: ${iconsDir}`)
+    return []
+  }
 
-    if (!fs.existsSync(iconsDir)) {
-      console.warn(`[IconNamesGenerator] Icons directory not found: ${iconsDir}`)
-      return
-    }
+  return readIconFiles(iconsDir)
+    .map(file => path.basename(file, '.svg'))
+    .sort()
+}
 
-    const files = fs.readdirSync(iconsDir)
-    const iconNames = files
-      .filter(file => file.endsWith('.svg'))
-      .map(file => path.basename(file, '.svg'))
-
-    const content = `/* Auto-generated icons names - do not edit manually */
-type TIcons = ${iconNames.length ? iconNames.map(name => `'${name}'`).join(' | ') : 'never'}
+function generateTypesSource (iconNames: string[]): string {
+  return `/* Auto-generated icons names - do not edit manually */
+type TIcons = ${
+  iconNames.length
+    ? iconNames.map(name => `'${name}'`).join(' | ')
+    : 'never'
+}
 `
-
-    const outputDir = path.dirname(outputPath)
-    if (!fs.existsSync(outputDir)) {
-      fs.mkdirSync(outputDir, { recursive: true })
-    }
-
-    fs.writeFileSync(outputPath, content, 'utf-8')
-  }
-
-  return {
-    name: 'vite-plugin-icons-names-generator',
-    buildStart () {
-      generateIconsNames()
-    },
-    configureServer (server) {
-      const iconsDir = path.resolve(process.cwd(), input)
-
-      server.watcher.add(iconsDir)
-      server.watcher.on('all', (event, filePath) => {
-        if (filePath.startsWith(iconsDir) && filePath.endsWith('.svg')) {
-          generateIconsNames()
-        }
-      })
-    }
-  }
 }
 
+function writeTypesFile (content: string): void {
+  const outputPath = path.resolve(PROJECT_ROOT, OUTPUT)
+  const outputDir = path.dirname(outputPath)
+
+  fs.mkdirSync(outputDir, { recursive: true })
+  fs.writeFileSync(outputPath, content, 'utf-8')
+}
+
+function generateIconNames (): void {
+  const icons = collectIconNames()
+  const source = generateTypesSource(icons)
+  writeTypesFile(source)
+}
+
+export const IconNamesGenerator = (): Plugin => ({
+  name: 'vite-plugin-icons-names-generator',
+  buildStart: generateIconNames,
+  configureServer: (server) => {
+    const iconsDir = path.resolve(PROJECT_ROOT, INPUT)
+
+    server.watcher.add(iconsDir)
+    server.watcher.on('all', (_, filePath) => {
+      if (filePath.endsWith('.svg') && filePath.startsWith(iconsDir)) {
+        generateIconNames()
+      }
+    })
+  }
+})

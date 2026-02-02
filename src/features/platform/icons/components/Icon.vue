@@ -2,7 +2,7 @@
 import { type Component } from 'vue'
 
 const icons = import.meta.glob<Component>(
-  '@/assets/icons/*.svg',
+  '@/features/platform/icons/assets/*.svg',
   { import: 'default' }
 )
 
@@ -10,10 +10,12 @@ const props = defineProps<{
   name: TIcons
 }>()
 
+console.log(icons)
+
 const icon = shallowRef<Component | null>(null)
 
 watch(() => props.name, async (name) => {
-  const loader = icons[`/src/assets/icons/${name}.svg`]
+  const loader = icons[`/src/features/platform/icons/assets/${name}.svg`]
   icon.value = loader ? await loader() : null
 }, { immediate: true })
 </script>

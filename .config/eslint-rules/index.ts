@@ -5,7 +5,7 @@ import { vueRules } from './vue'
 
 export const eslintRules = {
   ...baseRules,
-  ...stylisticRules,
   ...typescriptRules,
+  ...stylisticRules,
   ...vueRules
 }

@@ -8,6 +8,7 @@ export {}
 declare global {
   const EffectScope: typeof import('vue').EffectScope
   const acceptHMRUpdate: typeof import('pinia').acceptHMRUpdate
+  const apiClient: typeof import('../../src/features/platform/api/client').apiClient
   const asyncComputed: typeof import('@vueuse/core').asyncComputed
   const autoResetRef: typeof import('@vueuse/core').autoResetRef
   const computed: typeof import('vue').computed
@@ -131,7 +132,7 @@ declare global {
   const useAbortController: typeof import('../../src/composables/useAbortController').useAbortController
   const useActiveElement: typeof import('@vueuse/core').useActiveElement
   const useAnimate: typeof import('@vueuse/core').useAnimate
-  const useApiClient: typeof import('../../src/api/client').useApiClient
+  const useApiClient: typeof import('../../src/features/platform/api/client').useApiClient
   const useArrayDifference: typeof import('@vueuse/core').useArrayDifference
   const useArrayEvery: typeof import('@vueuse/core').useArrayEvery
   const useArrayFilter: typeof import('@vueuse/core').useArrayFilter
@@ -225,7 +226,7 @@ declare global {
   const useMemoize: typeof import('@vueuse/core').useMemoize
   const useMemory: typeof import('@vueuse/core').useMemory
   const useMinLenRule: typeof import('../../src/composables/useFormConfig').useMinLenRule
-  const useModals: typeof import('../../src/features/modals/composables/useModals').useModals
+  const useModals: typeof import('../../src/features/platform/modals/composables/useModals').useModals
   const useModel: typeof import('vue').useModel
   const useMounted: typeof import('@vueuse/core').useMounted
   const useMouse: typeof import('@vueuse/core').useMouse
@@ -345,6 +346,7 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
+    readonly apiClient: UnwrapRef<typeof import('../../src/features/platform/api/client')['apiClient']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
@@ -468,7 +470,6 @@ declare module 'vue' {
     readonly useAbortController: UnwrapRef<typeof import('../../src/composables/useAbortController')['useAbortController']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
-    readonly useApiClient: UnwrapRef<typeof import('../../src/api/client')['useApiClient']>
     readonly useArrayDifference: UnwrapRef<typeof import('@vueuse/core')['useArrayDifference']>
     readonly useArrayEvery: UnwrapRef<typeof import('@vueuse/core')['useArrayEvery']>
     readonly useArrayFilter: UnwrapRef<typeof import('@vueuse/core')['useArrayFilter']>
@@ -562,7 +563,7 @@ declare module 'vue' {
     readonly useMemoize: UnwrapRef<typeof import('@vueuse/core')['useMemoize']>
     readonly useMemory: UnwrapRef<typeof import('@vueuse/core')['useMemory']>
     readonly useMinLenRule: UnwrapRef<typeof import('../../src/composables/useFormConfig')['useMinLenRule']>
-    readonly useModals: UnwrapRef<typeof import('../../src/features/modals/composables/useModals')['useModals']>
+    readonly useModals: UnwrapRef<typeof import('../../src/features/platform/modals/composables/useModals')['useModals']>
     readonly useModel: UnwrapRef<typeof import('vue')['useModel']>
     readonly useMounted: UnwrapRef<typeof import('@vueuse/core')['useMounted']>
     readonly useMouse: UnwrapRef<typeof import('@vueuse/core')['useMouse']>

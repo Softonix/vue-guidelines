@@ -6,7 +6,7 @@ export const ScriptsAutoImport = () => AutoImport({
   dts: './dts/auto-imports/auto-import-scripts.d.ts',
 
   dirs: [
-    './src/api/client.ts',
+    './src/features/platform/api/client.ts',
     './src/router/route-names-registry.ts',
 
     './src/composables',

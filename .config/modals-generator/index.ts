@@ -1,87 +1,95 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import type { Plugin } from 'vite'
 
+interface IModalEntry {
+  name: string
+  importPath: string
+}
+
 const SCAN_DIRS = ['src/views', 'src/features', 'src/components']
-const OUTPUT = 'src/features/modals/modals-registry.ts'
+const OUTPUT = 'src/features/platform/modals/modals-registry.ts'
 
-const findModalsRecursively = (dir: string, pattern: RegExp): string[] => {
-  const results: string[] = []
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const PROJECT_ROOT = path.resolve(__dirname, '../..')
 
-  if (!fs.existsSync(dir)) return results
+function findModalFiles (dir: string): string[] {
+  if (!fs.existsSync(dir)) return []
 
-  const items = fs.readdirSync(dir, { withFileTypes: true })
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+    const fullPath = path.join(dir, entry.name)
 
-  for (const item of items) {
-    const fullPath = path.join(dir, item.name)
-
-    if (item.isDirectory()) {
-      results.push(...findModalsRecursively(fullPath, pattern))
-    } else if (item.isFile() && pattern.test(item.name)) {
-      results.push(fullPath)
+    if (entry.isDirectory()) {
+      return findModalFiles(fullPath)
     }
-  }
 
-  return results
+    if (entry.isFile() && entry.name.endsWith('Modal.vue')) {
+      return [fullPath]
+    }
+
+    return []
+  })
 }
 
-export const ModalsGenerator = (): Plugin => {
-  const generateModals = () => {
-    const cwd = process.cwd()
-    const outputPath = path.resolve(cwd, OUTPUT)
-    const pattern = /Modal\.vue$/
+function collectModals () {
+  const outputDir = path.dirname(path.resolve(PROJECT_ROOT, OUTPUT))
+  const modals: IModalEntry[] = []
 
-    const allModals: { name: string; importPath: string }[] = []
+  for (const scanDir of SCAN_DIRS) {
+    const fullDir = path.resolve(PROJECT_ROOT, scanDir)
+    const files = findModalFiles(fullDir)
 
-    for (const scanDir of SCAN_DIRS) {
-      const fullScanDir = path.resolve(cwd, scanDir)
-      const modalFiles = findModalsRecursively(fullScanDir, pattern)
-
-      for (const filePath of modalFiles) {
-        const name = path.basename(filePath, '.vue')
-        const relativePath = path.relative(path.join(cwd, 'src'), filePath).replace(/\\/g, '/')
-        const importPath = `@/${relativePath}`
-
-        allModals.push({ name, importPath })
-      }
-    }
-
-    // Sort alphabetically for consistent output
-    allModals.sort((a, b) => a.name.localeCompare(b.name))
-
-    const content = `/* Auto-generated modals registry - do not edit manually */
-export const Modals = {
-${allModals.map(m => `  ${m.name}: () => defineAsyncComponent(() => import('${m.importPath}'))`).join(',\n')}
-}
-`
-
-    const outputDir = path.dirname(outputPath)
-    if (!fs.existsSync(outputDir)) {
-      fs.mkdirSync(outputDir, { recursive: true })
-    }
-
-    fs.writeFileSync(outputPath, content, 'utf-8')
-  }
-
-  return {
-    name: 'vite-plugin-modals-generator',
-    buildStart () {
-      generateModals()
-    },
-    configureServer (server) {
-      const cwd = process.cwd()
-
-      for (const scanDir of SCAN_DIRS) {
-        const fullScanDir = path.resolve(cwd, scanDir)
-        server.watcher.add(fullScanDir)
-      }
-
-      server.watcher.on('all', (event, filePath) => {
-        if (filePath.endsWith('Modal.vue')) {
-          generateModals()
-        }
+    for (const file of files) {
+      modals.push({
+        name: path.basename(file, '.vue'),
+        importPath:
+          './' +
+          path.relative(outputDir, file).replace(/\\/g, '/')
       })
     }
   }
+
+  return modals.sort((a, b) => a.name.localeCompare(b.name))
 }
 
+function generateRegistrySource (modals: IModalEntry[]): string {
+  return `/* Auto-generated modals registry - do not edit manually */
+export const Modals = {
+${modals
+  .map(m => `  ${m.name}: () => defineAsyncComponent(() => import('${m.importPath}'))`)
+  .join(',\n')}
+}
+`
+}
+
+function writeRegistryFile (content: string): void {
+  const outputPath = path.resolve(PROJECT_ROOT, OUTPUT)
+  const outputDir = path.dirname(outputPath)
+
+  fs.mkdirSync(outputDir, { recursive: true })
+  fs.writeFileSync(outputPath, content, 'utf-8')
+}
+
+function generateModalsRegistry (): void {
+  const modals = collectModals()
+  const source = generateRegistrySource(modals)
+  writeRegistryFile(source)
+}
+
+export const ModalsGenerator = (): Plugin => ({
+  name: 'vite-plugin-modals-generator',
+  buildStart: generateModalsRegistry,
+  configureServer: (server) => {
+    for (const dir of SCAN_DIRS) {
+      server.watcher.add(path.resolve(PROJECT_ROOT, dir))
+    }
+
+    server.watcher.on('all', (_, filePath) => {
+      if (filePath.endsWith('Modal.vue')) {
+        generateModalsRegistry()
+      }
+    })
+  }
+})

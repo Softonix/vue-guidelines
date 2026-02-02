@@ -18,4 +18,4 @@ instance.interceptors.response.use(
 
 instance.interceptors.request.use(requestInterceptor, requestErrorInterceptor)
 
-export const useApiClient = instance
+export const apiClient = instance

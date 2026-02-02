@@ -39,9 +39,7 @@ composable → store → service
 dts/                       # TypeScript global declarations (auto-generated + manual)
 
 src/
-├── api/                   # Axios client, interceptors, API types
 ├── assets/
-│   ├── icons/             # SVG icons (auto-typed via TIcons)
 │   └── styles/            # CSS (main.css, theme.css, element-reset/)
 ├── components/            # Global components (auto-imported)
 ├── composables/           # Global composables (auto-imported)
@@ -60,7 +58,8 @@ src/
 │       ├── composables/      # (auto-imported)
 │       └── components/       # (auto-imported)
 └── features/              # Reusable isolated features
-    └── [feature]/
+    ├── platform/
+    ├── [feature]/          
         ├── Feature.vue
         ├── feature.service.ts
         ├── feature.store.ts
@@ -86,7 +85,14 @@ Everything in these paths is auto-imported (no manual imports needed):
 
 ## Icon Component
 
-`<Icon name="car" />` - dynamically loads SVG from `src/assets/icons/`. Icon names are type-safe via auto-generated `TIcons` union in `dts/icons.d.ts`.
+`<Icon name="car" />` - dynamically loads SVG from `src/features/platform/icons/assets/`. Icon names are type-safe via auto-generated `TIcons` union in `src/features/platform/icons/icons.d.ts`.
+
+## Modals
+
+- Create modal components as `*Modal.vue` under `src/views/`, `src/features/`, or `src/components/` (auto-registered).
+- Registry is auto-generated at `src/features/platform/modals/modals-registry.ts`.
+- Use `useModals()` to control them: `openModal('HomeModal', props)` / `closeModal('HomeModal')`.
+- The modal host is `Modals` component, rendered once in `src/App.vue`.
 
 ## Naming Conventions
 
@@ -99,6 +105,7 @@ Everything in these paths is auto-imported (no manual imports needed):
 ## Important Rules
 
 - NEVER use `export default` - always use named exports
+- NEVER use `as any` to fix TypeScript errors - fix the actual type issue
 - NEVER let services know about stores
 - NEVER let stores use project orchestrating composables (utility composables like VueUse are OK)
 - NEVER let features depend on each other directly
@@ -106,4 +113,3 @@ Everything in these paths is auto-imported (no manual imports needed):
 - ALWAYS use named navigation with `routeNames` (auto-imported), NEVER path strings
 - Routes MUST have `name: routeNames.xxx` (camelCase), NEVER static strings like `name: 'my-route', it will be automatically generated inside routeNames`
 - Page/component CSS goes in `.vue` files, global styles in `/assets/styles/`
-

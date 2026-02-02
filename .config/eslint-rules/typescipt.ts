@@ -1,6 +1,7 @@
 import type { Linter } from 'eslint'
 
 export const typescriptRules: Linter.Config['rules'] = {
+  '@typescript-eslint/no-unsafe-return': 'off',
   '@typescript-eslint/no-floating-promises': 'off',
   '@typescript-eslint/no-unused-vars': ['error', { ignoreRestSiblings: true }],
   '@typescript-eslint/explicit-module-boundary-types': 'off',

@@ -1,6 +1,7 @@
 import type { Linter } from 'eslint'
 
 export const vueRules: Linter.Config['rules'] = {
+  'vue/no-multiple-template-root': 'off',
   'vue/max-attributes-per-line': 'off',
   'vue/singleline-html-element-content-newline': 'off',
   'vue/multi-word-component-names': 'off',

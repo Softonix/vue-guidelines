@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import axios, { type AxiosRequestConfig, type InternalAxiosRequestConfig } from 'axios'
 
 export interface IAxiosRequestConfig<Path extends TPathKeys = string, Method extends TPathMethods<Path> = string> extends AxiosRequestConfig {
