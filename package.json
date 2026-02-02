@@ -14,11 +14,6 @@
     "openapi-generate": "npx openapi-typescript https://fakerestapi.azurewebsites.net/swagger/v1/swagger.json -o ./src/features/platform/api/schema.ts",
     "postinstall": "run-p openapi-generate"
   },
-  "lint-staged": {
-    "src/**/*.{js,ts,mts,tsx,vue}": [
-      "npm run lint"
-    ]
-  },
   "dependencies": {
     "@vueuse/core": "^14.1.0",
     "axios": "^1.13.3",
@@ -39,7 +34,6 @@
     "eslint-plugin-vue": "~10.7.0",
     "husky": "^9.1.7",
     "jiti": "^2.6.1",
-    "lint-staged": "^16.2.7",
     "npm-run-all2": "^8.0.4",
     "tailwindcss": "^4.1.18",
     "typescript": "~5.9.3",
