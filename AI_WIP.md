@@ -59,13 +59,13 @@ src/
 ├── types/                       # Application-owned type definitions
 ├── utils/                       # Global utility functions
 ├── views/                       # Route-bound pages (strict structure)
-│   └── [view]/
-│       ├── View.vue
-│       ├── view.routes.ts
-│       ├── view.service.ts
-│       ├── view.store.ts
-│       ├── composables/
-│       └── components/
+    └── [view]/
+        ├── View.vue
+        ├── view.routes.ts
+        ├── view.service.ts
+        ├── view.store.ts
+        ├── composables/
+        └── components/
 ```
 
 ## VueUse & Element Plus First
