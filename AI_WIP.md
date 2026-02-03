@@ -29,42 +29,43 @@ composable → store → service
 
 ```
 .config/
-├── auto-imports/          # unplugin-auto-import & unplugin-vue-components config
-├── eslint-rules/          # ESLint rules (base, stylistic, typescript, vue)
-├── icon-names-generator/  # Vite plugin generating TIcons type from SVG files
-├── modals-generator/      # Vite plugin auto-registering *Modal.vue files
-├── route-names-generator/ # Vite plugin generating routeNames from routeNames.xxx usage
-└── index.ts               # Exports all config plugins
+├── auto-imports/                # unplugin-auto-import & unplugin-vue-components config
+├── eslint-rules/                # ESLint rules (base, stylistic, typescript, vue)
+├── icon-names-generator/        # Vite plugin generating TIcons type from SVG files
+├── modals-generator/            # Vite plugin auto-registering *Modal.vue files
+├── route-names-generator/       # Vite plugin generating routeNames from routeNames.xxx usage
+└── index.ts                     # Exports all config plugins
 
-dts/                       # TypeScript global declarations (auto-generated + manual)
-
+dts/                             # TypeScript global declarations (auto-generated + manual)
+public/                          # Website's static assets.
 src/
 ├── assets/
-│   └── styles/            # CSS (main.css, theme.css, element-reset/)
-├── components/            # Global components (auto-imported)
-├── composables/           # Global composables (auto-imported)
-├── utils/                 # Global utility functions (auto-imported)
-├── layouts/               # Layout components
-├── plugins/               # Vue plugins
-├── router/                # Routes, guards, route-names
-├── services/              # Global services (auto-imported)
-├── store/modules/         # Global Pinia stores (auto-imported)
-├── views/                 # Route-bound pages (strict structure)
+│   └── styles/                  # CSS (main.css, theme.css, element-reset/)
+├── components/                  # Global components
+├── composables/                 # Global composables
+├── features/                    # Reusable isolated features
+    ├── platform/
+    └── [feature]/          
+        ├── Feature.vue
+        ├── feature.service.ts
+        ├── feature.store.ts  
+        ├── composables/      
+        └── components/       
+├── layouts/                     # Layout components
+├── plugins/                     # Vue plugins
+├── router/                      # Routes, guards, route-names
+├── services/                    # Global services
+├── store/                       # Global Pinia stores
+├── types/                       # Application-owned type definitions
+├── utils/                       # Global utility functions
+├── views/                       # Route-bound pages (strict structure)
 │   └── [view]/
 │       ├── View.vue
 │       ├── view.routes.ts
-│       ├── view.service.ts   # (auto-imported)
-│       ├── view.store.ts     # (auto-imported)
-│       ├── composables/      # (auto-imported)
-│       └── components/       # (auto-imported)
-└── features/              # Reusable isolated features
-    ├── platform/
-    ├── [feature]/          
-        ├── Feature.vue
-        ├── feature.service.ts
-        ├── feature.store.ts
-        ├── composables/
-        └── components/
+│       ├── view.service.ts
+│       ├── view.store.ts
+│       ├── composables/
+│       └── components/
 ```
 
 ## VueUse & Element Plus First
@@ -110,6 +111,6 @@ Everything in these paths is auto-imported (no manual imports needed):
 - NEVER let stores use project orchestrating composables (utility composables like VueUse are OK)
 - NEVER let features depend on each other directly
 - Root page components must match route name: `Login.vue` → `/auth/login`
-- ALWAYS use named navigation with `routeNames` (auto-imported), NEVER path strings
+- ALWAYS use named navigation with `routeNames`, NEVER path strings
 - Routes MUST have `name: routeNames.xxx` (camelCase), NEVER static strings like `name: 'my-route', it will be automatically generated inside routeNames`
 - Page/component CSS goes in `.vue` files, global styles in `/assets/styles/`
