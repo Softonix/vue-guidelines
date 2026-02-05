@@ -58,6 +58,7 @@
     "getCurrentScope": true,
     "getCurrentWatcher": true,
     "h": true,
+    "helpers": true,
     "homeService": true,
     "ignorableWatch": true,
     "inject": true,

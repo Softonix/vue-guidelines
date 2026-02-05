@@ -1,4 +1,4 @@
-# Softonix AI Vue Guidelines
+# Softonix Vue Guidelines
 
 ## Architecture Layers
 
@@ -6,10 +6,12 @@
 
 ```
 composable → store → service
+component → (composable | store | service)
 ```
 
 - **Service** → knows nothing about store or composable (pure API/domain/data-managing logic)
-- **Store** → can use services and utility composables (e.g., VueUse), but should NOT use project orchestrating composables
+- **Store** → can use services and utility composables (e.g., VueUse), but should NOT use project orchestrating composables. 
+Do not use store for every view or every feature. Only when state is shared across multiple areas. Global store is not related to views or features, e.g: `account.store` or `config.store`
 - **Composable** → can use stores and services (the orchestrator for business logic)
 
 ## Views vs Features
@@ -18,12 +20,39 @@ composable → store → service
 |---------------------|---------------------------|-------------------------------|
 | **Purpose**         | Route-bound pages         | Reusable isolated modules     |
 | **Route awareness** | Strictly tied to routes   | Route-agnostic (isolated)     |
-| **Location**        | `src/views/`              | `src/features/`               |
+| **Location**        | `src/views/{view-name}`              | `src/features/{feature-name}`               |
 
 **Feature isolation rules:**
-1. Features NEVER know about the route they're used in
-2. Features NEVER depend on other features directly
-3. Views (or composables) act as "feature managers" and orchestrate communication
+1. Features CAN contain multiple components, services, store or composables but ALWAYS have only ONE Single Responsibility.
+2. Features NEVER depend on other features directly.
+3. Views, composables and stores act as "feature managers" and orchestrate communication. For example `/views/search/Search.vue` contains `Chat.vue` component from `/features/chat`
+4. Use EventEmitter (Or other observer/pub-sub) between features or other layers of application to avoid coupling. Check `utils/helpers.ts`. Event payloads are type-safe via `TEventMap`.
+
+## Composable example
+
+```
+// Example only. Can be placed under /features/checkout together with CartCheckout component
+// OR inside /views/checkout in case it is standalone composable.
+
+export function useCartCheckout () {
+    const loading = ref(false)
+    const cartStore = useCartStore()
+    const checkoutStore = useCheckoutStore()
+
+    async function checkoutProducts () {
+        loading.value = true
+
+        try {
+            const products = await cartStore.getProducts()
+            await checkoutStore.checkout(products)
+        } finally {
+            loading.value = false
+        }
+    }
+
+    return { checkoutProducts }
+} 
+```
 
 ## Project Structure
 
@@ -45,11 +74,11 @@ src/
 ├── composables/                 # Global composables
 ├── features/                    # Reusable isolated features
     ├── platform/
-    └── [feature]/          
+    └── {feature-name}/
         ├── Feature.vue
         ├── feature.service.ts
-        ├── feature.store.ts  
-        ├── composables/      
+        ├── feature.store.ts       # optional — only when state is shared
+        ├── composables/
         └── components/       
 ├── layouts/                     # Layout components
 ├── plugins/                     # Vue plugins
@@ -63,7 +92,7 @@ src/
         ├── View.vue
         ├── view.routes.ts
         ├── view.service.ts
-        ├── view.store.ts
+        ├── view.store.ts          # optional — only when state is shared
         ├── composables/
         └── components/
 ```
@@ -75,6 +104,8 @@ Before creating from scratch, ALWAYS check existing libraries:
 - **UI Components** → Check Element Plus first (buttons, forms, tables, dialogs, etc.)
 
 ## Auto-Imports
+
+The logic behind auto-imports is to reduce imports noise inside files followed by Nuxt.js paradigm. You still need to import custom .ts or .json files outside of rules described below. You can disable auto-imports of script files on your project if you want but we still strictly recommend to auto-import components.
 
 Everything in these paths is auto-imported (no manual imports needed):
 - `src/composables/`, `src/views/**/composables/`, `src/features/**/composables/`
@@ -91,9 +122,27 @@ Everything in these paths is auto-imported (no manual imports needed):
 ## Modals
 
 - Create modal components as `*Modal.vue` under `src/views/`, `src/features/`, or `src/components/` (auto-registered).
-- Registry is auto-generated at `src/features/platform/modals/modals-registry.ts`.
+- Registry is auto-generated at `src/features/platform/modals/modals-registry.ts` via `ModalsGenerator` vite plugin.
 - Use `useModals()` to control them: `openModal('HomeModal', props)` / `closeModal('HomeModal')`.
 - The modal host is `Modals` component, rendered once in `src/App.vue`.
+
+## Error Handling
+
+- API errors are handled by the **response interceptor** (`src/features/platform/api/interceptors/response.interceptor.ts`) which provides global error handling (e.g., ElNotification, sentry logging, redirects on 401).
+- For **view-feature-specific error handling**, catch errors in composables or components and implement custom error handling logic. Do not use `ElNotification` inside each API error handler as it should be implemented globally. If you want to disable `ElNotification` for a specific API request, implement custom configuration for apiClient like `showNotification: false`. 
+
+## EventEmitter usage example:
+
+```ts
+// In feature A (publisher) — e.g. inside a composable or component
+helpers.eventEmitter.publish('cartUpdated', products)
+
+// In feature B (listener) — always clean up to prevent memory leaks
+const subscription = helpers.eventEmitter.listen('cartUpdated', (products) => {
+  // react to cart changes
+})
+onUnmounted(() => subscription.remove())
+```
 
 ## Naming Conventions
 
