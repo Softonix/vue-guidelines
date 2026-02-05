@@ -11,7 +11,9 @@ const __dirname = path.dirname(__filename)
 const PROJECT_ROOT = path.resolve(__dirname, '../..')
 
 function readIconFiles (dir: string): string[] {
-  if (!fs.existsSync(dir)) return []
+  if (!fs.existsSync(dir)) {
+    return []
+  }
 
   return fs
     .readdirSync(dir, { withFileTypes: true })

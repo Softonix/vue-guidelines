@@ -13,7 +13,9 @@ const __dirname = path.dirname(__filename)
 const PROJECT_ROOT = path.resolve(__dirname, '../..')
 
 function findRouteFiles (dir: string): string[] {
-  if (!fs.existsSync(dir)) return []
+  if (!fs.existsSync(dir)) {
+    return []
+  }
 
   return traverseDirs(dir, { withFiles: true })
     .filter(({ entry }) => entry.isFile() && entry.name.endsWith('.routes.ts'))

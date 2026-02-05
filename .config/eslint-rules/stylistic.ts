@@ -3,7 +3,7 @@ import type { Linter } from 'eslint'
 export const stylisticRules: Linter.Config['rules'] = {
   '@stylistic/array-bracket-newline': ['error', 'consistent'],
   '@stylistic/array-bracket-spacing': ['error', 'never'],
-  '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: true }],
+  '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: false }],
   '@stylistic/comma-dangle': ['error', 'never'],
   '@stylistic/comma-spacing': ['error', { before: false, after: true }],
   '@stylistic/comma-style': ['error', 'last'],

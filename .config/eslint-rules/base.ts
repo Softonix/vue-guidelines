@@ -12,5 +12,6 @@ export const baseRules: Linter.Config['rules'] = {
     ignorePattern: 'url\\('
   }],
   'no-undef': 'off',
-  'no-empty': ['error', { allowEmptyCatch: true }]
+  'no-empty': ['error', { allowEmptyCatch: true }],
+  curly: ['error', 'all']
 }
