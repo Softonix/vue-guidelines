@@ -1,4 +1,5 @@
 import { globalIgnores } from 'eslint/config'
+import js from '@eslint/js'
 
 import pluginStylistic from '@stylistic/eslint-plugin'
 import pluginVue from 'eslint-plugin-vue'
@@ -16,6 +17,7 @@ export default defineConfigWithVueTs(
     'src/features/platform/api/schema.ts'
   ]),
 
+  js.configs.recommended,
   pluginStylistic.configs.recommended,
   pluginVue.configs['flat/recommended'],
   vueTsConfigs.recommendedTypeChecked,

@@ -20,7 +20,7 @@ Do not use store for every view or every feature. Only when state is shared acro
 |---------------------|---------------------------|-------------------------------|
 | **Purpose**         | Route-bound pages         | Reusable isolated modules     |
 | **Route awareness** | Strictly tied to routes   | Route-agnostic (isolated)     |
-| **Location**        | `src/views/{view-name}`              | `src/features/{feature-name}`               |
+| **Location**        | `src/views/{view-name}`   | `src/features/{feature-name}` |
 
 **Feature isolation rules:**
 1. Features CAN contain multiple components, services, store or composables but ALWAYS have only ONE Single Responsibility.
